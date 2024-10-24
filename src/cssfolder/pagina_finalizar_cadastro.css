@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+/* Global Styles */
+
+body {
+  background-color: #f4f7fa;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Profile Container */
+
+.profile-container {
+  width: 500px;
+  height: 700px;
+  margin: 5px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Header */
+
+.profile-header img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Arrows */
+
+.return-arrow, .next-arrow {
+  width: 30px;
+  height: 30px;
+  color: #6c757d;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.return-arrow:hover, .next-arrow:hover {
+  transform: translateY(-3px);
+}
+
+.next-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.return-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Info Box */
+
+.info-box {
+  background-color: #f1f1f1;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Nuvem */
+
+.nuvem {
+  background-image: url('icons8-nuvem-100.png');
+  background-size: cover;
+  background-color: #fff;
+  background-position: center;
+  padding: 40px 30px 30px 35px;
+  margin: 5px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.nuvem:hover {
+  transform: scale(1.1);
+}
+
+/* Form */
+
+.form-floating textarea {
+  border-radius: 15px;
+  border: 1px solid #ced4da;
+}
+
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+}
+
+.form-control {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Terms */
+
+.terms {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.terms label {
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+
+.terms a {
+  text-decoration: none;
+  color: #007bff;
+  margin-left: 10px;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.terms a:hover {
+  color: #0056b3;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px;
+  }
+
+  .profile-header img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .info-box {
+    font-size: 0.9rem;
+  }
+
+  .nuvem {
+    padding: 30px 15px 15px 20px;
+    margin: 15px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile-container {
+    padding: 10px;
+  }
+
+  .profile-header img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .info-box {
+    font-size: 0.8rem;
+  }
+
+  .nuvem {
+    margin: 10px;
+    padding: 30px 15px 15px 20px;
+    font-size: 11px;
+  }
+}

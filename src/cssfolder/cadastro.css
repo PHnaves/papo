@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+/* Zera o margin e padding de todos os elementos, além de garantir o box-sizing: border-box */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos do corpo da página, que centraliza o conteúdo na tela e define um fundo claro */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f6; 
+    color: #ffffff; 
+    font-family: 'Roboto', sans-serif; 
+}
+
+/* Estilos para o container do formulário */
+.wrapper-cadastro {
+    max-height: 550px; /* Altura reduzida */
+    max-width: 450px; /* Largura reduzida */
+    padding: 30px; /* Padding ajustado */
+    background: #3FA2F6; 
+    border-radius: 15px; /* Bordas ligeiramente menores */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    animation: slide-in 1s ease-out forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translatex(+100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translatex(0);
+        opacity: 1;
+    }   
+}
+
+@font-face {
+    font-family: 'GhostHOuses';
+    src: url('fontes/GhostHOuses.otf');
+}
+
+.wrapper-cadastro h1 {
+    font-family: 'GhostHOuses';
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.wrapper-cadastro img {
+    margin-bottom: 15px; /* Espaçamento inferior reduzido */
+}
+
+/* Estilos para a div que envolve cada input */
+.input-box-cadastro {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem; /* Espaçamento inferior reduzido */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos gerais para os inputs */
+input {
+    width: 100%;
+    height: 35px; /* Altura reduzida */
+    border: none;
+    border-radius: 10px; /* Bordas ligeiramente menores */
+    background: #fff;
+    color: #333;
+    outline: none; 
+    transition: background 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.input-cadastro {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.input-box-cadastro img {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333; 
+}
+
+.input-box-group-cadastro {
+    display: flex;
+    justify-content: space-between; 
+    gap: 15px; /* Gap ajustado */
+}
+
+.select-uf {
+    width: 70px; /* Largura ajustada */
+    height: 35px; /* Altura reduzida */
+    font-size: 0.75rem;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    margin-left: 5px;
+    padding: 0 10px;
+    outline: none;
+}
+
+
+.eye-icon {
+    position: absolute;
+    color: black;
+    margin-left: 350px; /* Posição ajustada */
+    top: 50%;
+    transform: translateY(-50%);
+}        
+
+/* Estilos do botão de cadastro */
+.btn-cadastro {
+    width: 100%; 
+    padding: 12px; /* Padding reduzido */
+    border: none;
+    border-radius: 20px; 
+    background: #fff;
+    color: #0d6efd;
+    font-size: 0.9rem; /* Tamanho da fonte reduzido */
+    font-weight: 600;
+    cursor: pointer; 
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cadastro:hover {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.register-link-cadastro {
+    font-size: 0.75rem; /* Tamanho da fonte reduzido */
+    margin-top: 15px;
+}
+
+.register-link-cadastro a {
+    color: #fff;
+    text-decoration: none; 
+    font-weight: 600;
+}
+
+.register-link-cadastro a:hover {
+    text-decoration: underline; 
+}
+
+@media (max-width: 768px) {
+    .wrapper-cadastro {
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    input {
+        padding: 10px 15px; 
+    }
+
+    .btn-cadastro {
+        padding: 10px;
+    }
+
+    .select-uf {
+        width: 70px; 
+    }
+}

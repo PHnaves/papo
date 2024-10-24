@@ -3,9 +3,6 @@ var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 
 // TODO Request all communities
 
-// TODO: Session checking 
-
-
 function sendmsg() {
     let usertext = msginput.value;
 
@@ -85,30 +82,9 @@ function rendermsg(data) {
     }
 }
 
-/*
-The community JSON:
-ID_Community
-Community_name
-Description
-Creation_date
-ID_Theme
-isPreCreated
-*/
-function getCommunities() {
-
-}
-
-function renderCommunityList(commlist) {
-    // Inside of community list there is going to be JSON
-    commlist.forEach(community => {
-
-    })
-}
-
-
 // document loaded
 window.onload = function () {
-    const commlist = []
+    
     const sendbtn = document.getElementById("sendbtn");
 
     sendbtn.addEventListener("click", sendmsg);

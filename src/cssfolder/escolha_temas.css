@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    background: linear-gradient(135deg, #e0eaff, #f9f9f9);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.header-title {
+    margin-bottom: 30px;
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1.75rem;
+}
+
+.nuvem {
+    background-image: url('icons8-nuvem-100.png');
+    background-size: cover;
+    background-position: center;
+    padding: 50px 40px 40px 45px;
+    margin: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.nuvem:hover {
+    transform: scale(1.1);
+}
+
+.nuvem.selecionada {
+    background-image: url('icons8-nuvem-azul-100.png');
+}
+
+.description {
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 40px;
+    color: #007bff;
+}
+
+.btn-continue {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 12px 40px;
+    background-color: #0d6efd;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-continue:hover {
+    background-color: #000000;
+    transform: scale(1.05);
+}
+
+textarea {
+    background: linear-gradient(135deg, #cbcfd4, #dfdfdf);
+    border: 5px solid #000000;
+    border-radius: 10px;
+    padding: 10px;
+    transition: border-color 0.3s;
+}
+
+textarea:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .nuvem {
+        padding: 43px 40px;
+        font-size: 14px;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+    }
+
+    .btn-continue {
+        padding: 10px 30px;
+        font-size: 1rem;
+    }
+
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    .description {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nuvem {
+        padding: 33px 30px;
+        font-size: 12px;
+    }
+
+    .header-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-continue {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+
+    textarea {
+        font-size: 0.8rem;
+    }
+
+    .description {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
