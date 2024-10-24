@@ -4,9 +4,7 @@ var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 // TODO Request all communities
 
 // TODO: Session checking 
-if (sessionStorage.getItem("Session_ID") == null) {
-    document.location.href = "login.html";
-}
+
 
 function sendmsg() {
     let usertext = msginput.value;
@@ -103,7 +101,7 @@ function getCommunities() {
 function renderCommunityList(commlist) {
     // Inside of community list there is going to be JSON
     commlist.forEach(community => {
-        
+
     })
 }
 
