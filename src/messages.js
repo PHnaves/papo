@@ -103,7 +103,7 @@ function getCommunities() {
 function renderCommunityList(commlist) {
     // Inside of community list there is going to be JSON
     commlist.forEach(community => {
-
+        
     })
 }
 
