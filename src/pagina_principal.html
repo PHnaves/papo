@@ -1,0 +1,342 @@
+<!-- pagina principal -->
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Define o charset e ajusta a viewport para tornar o layout responsivo -->
+    <title>Pagina Principal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Link do CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> <!-- Link dos ícones do Bootstrap -->
+    <style>
+/* Definição de variáveis de cor */
+:root {
+    --background-color: #f4f4f4;
+    --sidebar-bg: rgba(63, 162, 246, 1);
+    --sidebar-text-color: white;
+    --message-sent-bg: #007bff;
+    --message-received-bg: #ccc;
+    --input-border: #ccc;
+    --input-hover-bg: #006ee4;
+    --icon-hover-color: #000000;
+    --icon-active-color: #000000;
+    --footer-icon-color: white;
+}
+
+
+
+/* Estilo básico da página */
+body {
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal do chat */
+.container-chat {
+    display: flex;
+    max-width: 100vw; /* Máxima largura do viewport */
+    height: 90vh; /* Altura de 90% da viewport */
+    margin: 20px auto; /* Margem superior e inferior de 20px e centraliza horizontalmente */
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308); /* Sombra ao redor do container */
+}
+
+/* Sidebar para lista de contatos e ícones */
+.sidebar {
+    width: 30%; /* Define a largura da sidebar */
+    background: var(--sidebar-bg); /* Cor de fundo azul */
+    color: var(--sidebar-text-color);
+    padding: 15px;
+    margin-right: 10px; /* Margem direita para separar da área de chat */
+    border-radius: 20px; /* Bordas arredondadas */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.308); /* Sombra */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaçamento entre os itens da sidebar */
+}
+
+/* Barra de ícones na parte superior da sidebar */
+.sidebar .icon-bar {
+    display: flex;
+    justify-content: space-between; /* Espaçamento entre os ícones */
+    padding: 10px;
+}
+
+/* Estilo da lista de contatos */
+.sidebar .contacts {
+    margin-top: 20px;
+}
+
+/* Estilo de cada item de contato */
+.sidebar .contacts .contact-item {
+    display: flex;
+    align-items: center; /* Alinha os itens ao centro */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #cccccc71; /* Borda inferior dos contatos */
+    border-top: 1px solid #cccccc71; /* Borda superior dos contatos */
+    padding: 10px;
+}
+
+/* Estilo da imagem dos contatos */
+.sidebar .contacts .contact-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Imagem de perfil redonda */
+    margin-right: 15px;
+}
+
+/* Área de chat */
+.chat-area {
+    width: 70%; /* Largura de 70% da tela */
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box; /* Garante que padding e borda estão inclusos na largura total */
+}
+
+/* Cabeçalho da área de chat (onde aparece o nome do usuário e ícones) */
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaço entre a imagem do usuário e os ícones */
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc; /* Linha abaixo do cabeçalho */
+}
+
+/* Estilo da imagem do usuário no chat */
+.chat-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Deixa a imagem do usuário redonda */
+}
+
+/* Ícones do cabeçalho do chat */
+.chat-header .chat-icons i {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* Efeito hover nos ícones do cabeçalho */
+.chat-header .chat-icons i:hover {
+    color: #006ee4;
+}
+
+/* Área das mensagens */
+.messages {
+    flex-grow: 1; /* Faz com que as mensagens ocupem o espaço restante da área de chat */
+    margin-top: 20px;
+    overflow-y: auto; /* Permite rolar as mensagens verticalmente */
+}
+
+/* Estilo das mensagens */
+.message {
+    background-color: var(--message-sent-bg); /* Cor de fundo azul para mensagens enviadas */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 20px; /* Bordas arredondadas das mensagens */
+    margin-bottom: 12px;
+    max-width: 70%; /* Limita a largura das mensagens */
+}
+
+/* Mensagens enviadas (alinhadas à direita) */
+.message.sent {
+    align-self: flex-end;
+    background-color: var(--message-sent-bg); /* Fundo azul para mensagens enviadas */
+}
+
+/* Mensagens recebidas (alinhadas à esquerda) */
+.message.received {
+    background-color: var(--message-received-bg); /* Fundo cinza para mensagens recebidas */
+}
+
+/* Estilo do tempo das mensagens */
+.message-time {
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: right; /* Alinha o tempo à direita */
+}
+
+/* Área de input de mensagens */
+.input-area {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ccc; /* Linha superior */
+    padding-top: 15px;
+}
+
+/* Campo de input para digitar mensagens */
+.input-area input {
+    width: calc(100% - 50px); /* Largura responsiva do input */
+    padding: 12px;
+    border-radius: 20px;
+    border: 1px solid var(--input-border);
+    outline: none;
+    margin-right: 10px;
+}
+
+/* Botão de enviar mensagens */
+.input-area button {
+    background-color: var(--message-sent-bg); /* Cor azul do botão */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Efeito hover no botão de enviar */
+.input-area button:hover {
+    background-color: var(--input-hover-bg); /* Cor azul mais escura ao passar o mouse */
+}
+
+/* Estilo dos ícones da barra superior */
+.icon-bar a {
+    font-size: 1.5rem;
+    color: var(--footer-icon-color);
+    transition: transform 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.icon-bar a:hover {
+    color: var(--icon-hover-color);
+    transform: translateY(-3px); /* Move o ícone para cima ao passar o mouse */
+}
+
+/* Ícone ativo na barra superior */
+.icon-bar a.active {
+    font-size: 2.3rem; /* Aumenta o tamanho do ícone ativo */
+    color: var(--icon-active-color); /* Muda a cor do ícone ativo */
+}
+
+/* Ícones no rodapé da sidebar */
+.footer-icons {
+    display: flex;
+    justify-content: space-around; /* Espaça os ícones igualmente */
+    margin-top: auto; /* Coloca os ícones na parte inferior da sidebar */
+    padding: 10px 0;
+}
+
+/* Ícones no rodapé */
+.footer-icons a {
+    font-size: 1.9rem;
+    cursor: pointer;
+    color: var(--footer-icon-color);
+    transition: transform 0.3s ease;
+}
+
+.footer-icons a:hover {
+    color: var(--icon-hover-color);
+    transform: translateY(-3px);
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 768px) {
+    .container-chat {
+        flex-direction: column; /* Organiza em coluna */
+        height: auto; /* Altura ajustável */
+    }
+
+    .sidebar, .chat-area {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 2px solid #ccc; /* Adiciona uma borda inferior */
+    }
+
+    .chat-header img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .input-area input {
+        width: calc(100% - 60px); /* Ajusta o tamanho do input */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Container do chat -->
+<div class="container-chat">
+    <!-- Sidebar com lista de contatos e ícones -->
+    <div class="sidebar">
+        <div class="icon-bar">
+            <a href="pagina_principal.html" class="active"><i class="bi bi-chat-dots"></i></a> <!-- Ícone ativo da página principal -->
+            <a href="dentro_comunidade.html"><i class="bi bi-chat"></i></a> <!-- Ícone de outra página -->
+        </div>
+
+        <!-- Lista de contatos -->
+        <div class="contacts">
+            <div class="contact-item">
+                <img src="avatar.png" alt="User Avatar"> <!-- Imagem do contato -->
+                <div>
+                    <h5>Contact Name</h5>
+                    <p>Last message preview...</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <img src="avatar.png" alt="User Avatar">
+                <div>
+                    <h5>Contact Name</h5>
+                    <p>Last message preview...</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Ícones no rodapé da sidebar -->
+        <div class="footer-icons">
+            <a href="configuracoes.html"><i class="bi bi-gear"></i></a> <!-- Ícone de configurações -->
+            <a href="pagina_pesquisa.html"><i class="bi bi-search"></i></a> <!-- Ícone de pesquisa -->
+            <a href="pagina_comunidades.html"><i class="bi bi-people"></i></a> <!-- Ícone de comunidades -->
+        </div>
+    </div>
+
+    <!-- Área principal de chat -->
+    <div class="chat-area">
+        <!-- Cabeçalho do chat com nome do usuário e ícones -->
+        <div class="chat-header">
+            <img src="avatar.png" alt="User Avatar"> <!-- Imagem do usuário -->
+            <div class="chat-icons">
+                <i class="bi bi-pencil"></i>
+                <i class="bi bi-info-circle"></i>
+                <i class="bi bi-ban"></i>
+            </div>
+        </div>
+
+        <!-- Área de mensagens -->
+        <div class="messages" id = "messages">
+            <div class="message received">
+                <p>Hello, how are you?</p>
+                <span class="message-time">10:15 AM</span>
+            </div>
+
+            <div class="message sent">
+                <p>I'm good, thanks! How about you?</p>
+                <span class="message-time">10:17 AM</span>
+            </div>
+
+            <div class="message received">
+                <p>Doing well, thanks for asking!</p>
+                <span class="message-time">10:20 AM</span>
+            </div>
+        </div>
+
+        <!-- Área de input de mensagens -->
+        <div class="input-area">
+            <input type="text" id = "msginput" placeholder="Digite sua mensagem...">
+            <button type="button" id = "sendbtn">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="messages.js"></script>"
+</body>
+</html>
