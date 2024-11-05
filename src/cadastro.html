@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,21 +22,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* A página ocupa a altura total da janela */
-            background-color: #f4f7f6; /* Cor de fundo */
-            color: #ffffff; /* Cor do texto */
-            font-family: 'Arial', sans-serif; /* Fonte do texto */
+            min-height: 100vh;
+            /* A página ocupa a altura total da janela */
+            background-color: #f4f7f6;
+            /* Cor de fundo */
+            color: #ffffff;
+            /* Cor do texto */
+            font-family: 'Arial', sans-serif;
+            /* Fonte do texto */
         }
 
         /* Estilos para o container do formulário */
         .wrapper-cadastro {
-            width: 80%; /* Largura ocupando 80% da tela */
-            max-width: 600px; /* Largura máxima de 600px */
-            padding: 40px; /* Espaçamento interno */
-            background: #3FA2F6; /* Fundo azul (cor padrão do Bootstrap) */
-            border-radius: 20px; /* Bordas arredondadas */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para o efeito de elevação */
-            text-align: center; /* Centraliza o conteúdo textual */
+            width: 80%;
+            /* Largura ocupando 80% da tela */
+            max-width: 600px;
+            /* Largura máxima de 600px */
+            padding: 40px;
+            /* Espaçamento interno */
+            background: #3FA2F6;
+            /* Fundo azul (cor padrão do Bootstrap) */
+            border-radius: 20px;
+            /* Bordas arredondadas */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Sombra para o efeito de elevação */
+            text-align: center;
+            /* Centraliza o conteúdo textual */
             animation: slide-in 1s ease-out forwards;
         }
 
@@ -44,102 +56,138 @@
                 transform: translatex(+100%);
                 opacity: 0;
             }
+
             100% {
                 transform: translatex(0);
                 opacity: 1;
-            }   
+            }
         }
 
         .wrapper-cadastro img {
-            margin-bottom: 20px; /* Espaçamento inferior para a logo */
+            margin-bottom: 20px;
+            /* Espaçamento inferior para a logo */
         }
 
         /* Estilos para a div que envolve cada input */
         .input-box-cadastro {
-            position: relative; /* Para posicionamento absoluto do ícone */
+            position: relative;
+            /* Para posicionamento absoluto do ícone */
             width: 100%;
-            margin-bottom: 1.5rem; /* Espaçamento inferior */
-            display: flex; /* Exibe os elementos em linha */
-            justify-content: space-between; /* Espaça os elementos uniformemente */
+            margin-bottom: 1.5rem;
+            /* Espaçamento inferior */
+            display: flex;
+            /* Exibe os elementos em linha */
+            justify-content: space-between;
+            /* Espaça os elementos uniformemente */
         }
 
         /* Estilos gerais para os inputs */
         input {
             width: 100%;
-            height: 40px; /* Altura fixa de 40px */
+            height: 40px;
+            /* Altura fixa de 40px */
             border: none;
-            border-radius: 13px; /* Bordas arredondadas */
-            background: #fff; /* Fundo branco */
-            color: #333; /* Texto escuro */
-            outline: none; /* Remove o contorno padrão */
-            transition: background 0.3s ease; /* Transição suave na mudança de background */
+            border-radius: 13px;
+            /* Bordas arredondadas */
+            background: #fff;
+            /* Fundo branco */
+            color: #333;
+            /* Texto escuro */
+            outline: none;
+            /* Remove o contorno padrão */
+            transition: background 0.3s ease;
+            /* Transição suave na mudança de background */
         }
 
         input::placeholder {
-            color: rgba(0, 0, 0, 0.7); /* Cor do texto do placeholder */
+            color: rgba(0, 0, 0, 0.7);
+            /* Cor do texto do placeholder */
         }
 
         .input-cadastro {
-            padding-left: 45px; /* Espaçamento interno à esquerda, para acomodar o ícone */
-            padding-right: 45px; /* Espaçamento interno à direita */
+            padding-left: 45px;
+            /* Espaçamento interno à esquerda, para acomodar o ícone */
+            padding-right: 45px;
+            /* Espaçamento interno à direita */
         }
 
         /* Ícones posicionados no lado esquerdo do input */
         .input-box-cadastro i {
             position: absolute;
-            left: 15px; /* Distância da borda esquerda */
+            left: 15px;
+            /* Distância da borda esquerda */
             top: 50%;
-            transform: translateY(-50%); /* Centraliza verticalmente */
-            color: #333; /* Cor do ícone */
+            transform: translateY(-50%);
+            /* Centraliza verticalmente */
+            color: #333;
+            /* Cor do ícone */
         }
 
         /* Agrupamento de inputs lado a lado (nome e telefone) */
         .input-box-group-cadastro {
             display: flex;
-            justify-content: space-between; /* Espaça os inputs uniformemente */
-            gap: 20px; /* Espaçamento entre os inputs */
+            justify-content: space-between;
+            /* Espaça os inputs uniformemente */
+            gap: 20px;
+            /* Espaçamento entre os inputs */
         }
 
         /* Estilos do select (para escolha do estado/UF) */
         .select-uf {
-            width: 70px; /* Largura fixa */
+            width: 70px;
+            /* Largura fixa */
             height: 40px;
-            border-radius: 13px; /* Bordas arredondadas */
+            border-radius: 13px;
+            /* Bordas arredondadas */
             border: none;
-            background: #fff; /* Fundo branco */
-            margin-left: 10px; /* Margem para separar do input de RA */
+            background: #fff;
+            /* Fundo branco */
+            margin-left: 10px;
+            /* Margem para separar do input de RA */
             padding: 0 10px;
-            outline: none; /* Remove o contorno padrão */
+            outline: none;
+            /* Remove o contorno padrão */
         }
 
         .eye-icon {
             position: absolute;
-            margin-left: 450px; /* Posição do ícone de olho para mostrar/ocultar a senha */
+            margin-left: 450px;
+            /* Posição do ícone de olho para mostrar/ocultar a senha */
         }
 
         /* Efeito de hover para o ícone de olho */
         .eye-icon:hover {
-            color: #0d6efd; /* Muda a cor ao passar o mouse */
+            color: #0d6efd;
+            /* Muda a cor ao passar o mouse */
         }
 
         /* Estilos do botão de cadastro */
         .btn-cadastro {
-            width: 100%; /* O botão ocupa toda a largura do container */
+            width: 100%;
+            /* O botão ocupa toda a largura do container */
             padding: 15px;
             border: none;
-            border-radius: 30px; /* Bordas arredondadas */
-            background: #fff; /* Fundo branco */
-            color: #0d6efd; /* Cor do texto (azul padrão) */
+            border-radius: 30px;
+            /* Bordas arredondadas */
+            background: #fff;
+            /* Fundo branco */
+            color: #0d6efd;
+            /* Cor do texto (azul padrão) */
             font-size: 1rem;
-            font-weight: 600; /* Texto em negrito */
-            cursor: pointer; /* Mostra o cursor de mão */
-            transition: background 0.3s ease, transform 0.3s ease; /* Transições suaves */
+            font-weight: 600;
+            /* Texto em negrito */
+            cursor: pointer;
+            /* Mostra o cursor de mão */
+            transition: background 0.3s ease, transform 0.3s ease;
+            /* Transições suaves */
         }
 
         /* Efeito ao passar o mouse sobre o botão */
         .btn-cadastro:hover {
-            background: #e9ecef; /* Altera o fundo */
-            transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+            background: #e9ecef;
+            /* Altera o fundo */
+            transform: scale(1.05);
+            /* Aumenta ligeiramente o tamanho */
         }
 
         /* Estilos do link para login */
@@ -149,50 +197,64 @@
         }
 
         .register-link-cadastro a {
-            color: #fff; /* Cor branca para o texto do link */
-            text-decoration: none; /* Remove sublinhado */
+            color: #fff;
+            /* Cor branca para o texto do link */
+            text-decoration: none;
+            /* Remove sublinhado */
             font-weight: 600;
         }
 
         .register-link-cadastro a:hover {
-            text-decoration: underline; /* Adiciona sublinhado no hover */
+            text-decoration: underline;
+            /* Adiciona sublinhado no hover */
+        }
+
+        .campo-invalido {
+            /* Adiciona bordas vermelhas para indicar um valor inválido inserido */
+            border: 1px solid red;
         }
 
         /* Responsividade: ajusta os elementos para telas menores */
         @media (max-width: 768px) {
             .wrapper-cadastro {
                 padding: 20px;
-                box-shadow: none; /* Remove a sombra */
+                box-shadow: none;
+                /* Remove a sombra */
             }
 
             input {
-                padding: 10px 15px; /* Ajusta os espaçamentos dos inputs */
+                padding: 10px 15px;
+                /* Ajusta os espaçamentos dos inputs */
             }
 
             .eye-icon {
-                margin-left: 300px; /* Reposiciona o ícone de olho */
+                margin-left: 300px;
+                /* Reposiciona o ícone de olho */
             }
 
             .btn-cadastro {
-                padding: 10px; /* Ajusta o padding do botão */
+                padding: 10px;
+                /* Ajusta o padding do botão */
             }
 
             .select-uf {
-                width: 50px; /* Reduz a largura do select em telas menores */
+                width: 50px;
+                /* Reduz a largura do select em telas menores */
             }
         }
     </style>
 </head>
+
 <body id="cadastro">
     <div class="wrapper-cadastro">
         <h1>Cadastro</h1>
         <!-- Logo da página -->
-        <img src="pasta imagens/logo_versao_black.png" width="100px" alt="Logo">
+        <img src="imgfolder/logo_versao_black.png" width="100px" alt="Logo">
 
         <!-- Campo de RA e select de UF -->
         <div class="input-box-cadastro">
-            <input class="input-cadastro" type="text" placeholder="Digite seu RA" id = "RA" required>
-            <select class="select-uf" id = "UF">
+            <input class="input-cadastro" type="text" placeholder="Digite seu RA" id="RA" required>
+            <select class="select-uf" id="UF">
                 <option value="" disabled selected>UF</option> <!-- Placeholder do select -->
                 <!-- Opções dos estados brasileiros -->
                 <option value="AC">Acre (AC)</option>
@@ -221,7 +283,7 @@
                 <option value="SC">Santa Catarina (SC)</option>
                 <option value="SP">São Paulo (SP)</option>
                 <option value="SE">Sergipe (SE)</option>
-                <option value="TO">Tocantins (TO)</option>                
+                <option value="TO">Tocantins (TO)</option>
             </select>
             <i class="bi bi-person-fill"></i> <!-- Ícone ao lado do input de RA -->
         </div>
@@ -229,39 +291,44 @@
         <!-- Agrupamento de campos: nome completo e telefone -->
         <div class="input-box-group-cadastro">
             <div class="input-box-cadastro">
-                <input class="input-cadastro" type="text" placeholder="Digite seu nome completo" id = "FullName" required>
+                <input class="input-cadastro" type="text" placeholder="Digite seu nome completo" id="FullName" required>
                 <i class="bi bi-card-text"></i> <!-- Ícone ao lado do input de nome -->
             </div>
-    
+
             <div class="input-box-cadastro">
-                <input class="input-cadastro" type="text" placeholder="Digite seu telefone" id = "Telephone" required>
+                <input class="input-cadastro" type="text" placeholder="Digite seu telefone" id="Telephone" required>
                 <i class="bi bi-telephone"></i> <!-- Ícone ao lado do input de telefone -->
             </div>
         </div>
 
         <!-- Campo de criação de senha -->
         <div class="input-box-cadastro">
-            <input id="senha1" class="input-cadastro" type="password" placeholder="Crie uma senha (máximo 20 caracteres)" maxlength="20" minlength="8" required>
+            <input id="senha1" class="input-cadastro" type="password"
+                placeholder="Crie uma senha (máximo 20 caracteres)" maxlength="20" minlength="8" required>
             <i class="bi bi-lock-fill"></i> <!-- Ícone de cadeado -->
-            <i id="toggleSenha1" class="bi bi-eye-slash eye-icon" onclick="toggleSenha('senha1', 'toggleSenha1')"></i> <!-- Ícone de olho para mostrar/ocultar a senha -->
+            <i id="toggleSenha1" class="bi bi-eye-slash eye-icon" onclick="toggleSenha('senha1', 'toggleSenha1')"></i>
+            <!-- Ícone de olho para mostrar/ocultar a senha -->
         </div>
 
         <!-- Campo de confirmação de senha -->
         <div class="input-box-cadastro">
-            <input id="senha2" class="input-cadastro" type="password" placeholder="Confirme sua senha" maxlength="20" minlength="8" required>
+            <input id="senha2" class="input-cadastro" type="password" placeholder="Confirme sua senha" maxlength="20"
+                minlength="8" required>
             <i class="bi bi-lock-fill"></i> <!-- Ícone de cadeado -->
-            <i id="toggleSenha2" class="bi bi-eye-slash eye-icon" onclick="toggleSenha('senha2', 'toggleSenha2')"></i> <!-- Ícone de olho para mostrar/ocultar a senha -->
+            <i id="toggleSenha2" class="bi bi-eye-slash eye-icon" onclick="toggleSenha('senha2', 'toggleSenha2')"></i>
+            <!-- Ícone de olho para mostrar/ocultar a senha -->
         </div>
 
         <!-- Botão de cadastro -->
-        <button class="btn-cadastro" type="submit" id = "submitbtn">Cadastrar</button>
+        <button class="btn-cadastro" type="submit" id="submitbtn">Cadastrar</button>
 
         <!-- Link para a página de login -->
         <p class="register-link-cadastro">Já tem uma conta? <a href="login.html">Faça login</a></p>
     </div>
 
     <!-- Script JavaScript para alternar a visibilidade das senhas -->
-    <script src = "register.js"></script>
+    <script src="register.js"></script>
 
 </body>
+
 </html>

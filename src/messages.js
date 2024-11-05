@@ -1,4 +1,6 @@
 // Message ballons: classname = "message sent" ou "message received"
+
+// This page will only work once it has been connected to the server
 var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 
 // TODO Request all communities
