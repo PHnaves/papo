@@ -4,6 +4,11 @@
 
 Maiores informações do projeto em si estão no repositório Backend_PapoFantasma.
 
+## Observação
+
+> [!NOTE]
+O cliente acessa o caminho `/src` pela web, então não adicione arquivos confidenciais neste caminho, pois eles podem ser acessados e lidos.
+
 ## Andamento
 
 Objetivo: comunidades
