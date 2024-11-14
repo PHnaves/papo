@@ -1,5 +1,7 @@
 # PapoFantasma - Versão Cliente
 
+❕ Branch para desenvolvimento do sistema de comunidades communities_dev
+
 Maiores informações do projeto em si estão no repositório Backend_PapoFantasma.
 
 ## Andamento

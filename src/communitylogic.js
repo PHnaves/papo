@@ -11,7 +11,7 @@ isPreCreated
 
 // TODO Implement get communities
 function getCommunities() {
-
+    
 }
 
 function renderCommunityPage(selectedCommunity) {
