@@ -1,15 +1,5 @@
-/*
-The community JSON:
-ID_Community
-Community_name
-Description
-Creation_date
-Theme
-isPreCreated
-*/
-
-// TODO Implement get communities
-function sendCommunitiesRequest(ws) {}
+// General logic employed at the communities pages
+function sendCommunitiesRequest(ws) { }
 
 function renderCommunityPage(selectedCommunity) {
   const communityName = document.getElementById("communityname");
@@ -17,17 +7,38 @@ function renderCommunityPage(selectedCommunity) {
   communityName.textContent = selectedCommunity.Community_name;
 }
 
-function renderCommunityList(commlist) {
+function renderCommunityList(communitySection, commlist) {
   // Inside of community list there is going to be JSON
-  commlist.forEach((community) => {});
-}
 
-function updateCommunityList(communitylist) {
-  // Implement server side check, and add to array
-  console.log("updateCommunityList was called");
-  const updatedCommunityList = "yet to implement";
-  // Then
-  renderCommunityList(updatedCommunityList);
+  /*
+  Structure:
+   <div class="contact-item">
+                    <img src="avatar.png" alt="User Avatar">
+                    <h5>Contact Name</h5>
+                    <p>Last message preview...</p>
+    </div>
+
+    according to the HTML
+  */
+
+  // Also implements functionality
+  commlist.forEach((community) => {
+    const maindiv = document.createElement("div");
+    const commname = document.createElement("h5");
+    const likes = document.createElement("p");
+
+    maindiv.className = "contact-item"
+    commname.textContent = community["community_name"]
+    likes.textContent = community["likes"]
+
+    communitySection.appendChild(maindiv);
+    maindiv.appendChild(commname);
+    maindiv.appendChild(likes);
+
+    
+
+    // TODO Implement community functionality, such as onclick below
+  });
 }
 
 window.onload = () => {
@@ -41,6 +52,7 @@ window.onload = () => {
     isPreCreated -> could also be used to check for "official" communities.
   */
   const commlist = [];
+  const communitySection = document.getElementById("community-section");
 
   ws.onopen = (ev) => {
     console.log("Websocket connection has opened.");
@@ -60,13 +72,19 @@ window.onload = () => {
       // Community received data
       case "crd":
         try {
-          const comdata = JSON.parse(ev.data.substring(4, ev.data.length));
+          const comdata = JSON.parse(ev.data.substring(3, ev.data.length));
           commlist.push(comdata);
+
+          // Update list
+          renderCommunityList(communitySection, commlist);
+
         } catch (e) {
+          console.log("Attempted to parse: " + ev.data.substring(3, ev.data.length))
           console.log("Error while trying to parse community data JSON: " + e);
+          return;
         }
 
-        updateCommunityList(commlist);
+        renderCommunityList(communitySection, commlist);
         break;
       case "sys":
         console.log("System message: " + ev.data.substring(4, ev.data.length));
