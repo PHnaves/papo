@@ -9,9 +9,7 @@ isPreCreated
 */
 
 // TODO Implement get communities
-function getCommunities(ws) {
-
-}
+function sendCommunitiesRequest(ws) {}
 
 function renderCommunityPage(selectedCommunity) {
   const communityName = document.getElementById("communityname");
@@ -25,9 +23,8 @@ function renderCommunityList(commlist) {
 }
 
 function updateCommunityList(communitylist) {
-  // Update list
-
   // Implement server side check, and add to array
+  console.log("updateCommunityList was called");
   const updatedCommunityList = "yet to implement";
   // Then
   renderCommunityList(updatedCommunityList);
@@ -47,6 +44,8 @@ window.onload = () => {
 
   ws.onopen = (ev) => {
     console.log("Websocket connection has opened.");
+    // get community list
+    ws.send("gcl");
   };
 
   ws.onmessage = (ev) => {
@@ -60,14 +59,21 @@ window.onload = () => {
     switch (command) {
       // Community received data
       case "crd":
-        console.log("crd yay");
+        try {
+          const comdata = JSON.parse(ev.data.substring(4, ev.data.length));
+          commlist.push(comdata);
+        } catch (e) {
+          console.log("Error while trying to parse community data JSON: " + e);
+        }
+
+        updateCommunityList(commlist);
         break;
       case "sys":
         console.log("System message: " + ev.data.substring(4, ev.data.length));
         break;
       default:
         console.log(
-          command + " is not defined... \n but here is the message: " + ev.data
+          command + " is not defined... \n here is the full message: " + ev.data
         );
         break;
     }
