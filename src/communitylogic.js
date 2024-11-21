@@ -1,4 +1,8 @@
 // General logic employed at the communities pages
+
+// Assign default value
+var SELECTED_COMMUNITY = 1;
+
 function sendCommunitiesRequest(ws) { }
 
 function renderCommunityPage(selectedCommunity) {
@@ -35,9 +39,23 @@ function renderCommunityList(communitySection, commlist) {
     maindiv.appendChild(commname);
     maindiv.appendChild(likes);
 
-    
-
     // TODO Implement community functionality, such as onclick below
+
+    // User clicked on main div of this community
+    maindiv.onclick = () => {
+      console.log("Community: " + community["community_name"]);
+
+      if (SELECTED_COMMUNITY != Number(community["community_id"])) {
+        SELECTED_COMMUNITY = Number(community["community_id"]);
+
+        document.getElementById("communityname").textContent = community["community_name"];
+        // Clear messages to switch context
+        document.getElementById("messages").innerHTML = ""
+      }
+
+      // TODO Render other stuff
+
+    }
   });
 }
 
@@ -53,6 +71,8 @@ window.onload = () => {
   */
   const commlist = [];
   const communitySection = document.getElementById("community-section");
+  // Clean before any of these load
+  communitySection.innerHTML = "";
 
   ws.onopen = (ev) => {
     console.log("Websocket connection has opened.");
