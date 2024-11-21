@@ -1,4 +1,3 @@
-
 console.log(localStorage.getItem("RA"));
 
 /*
@@ -20,73 +19,74 @@ console.log(localStorage.getItem("RA"));
 */
 
 window.onload = () => {
-    console.log("Window has loaded");
+  console.log("Window has loaded");
 
-    // Manual login part 
+  // Manual login part
 
-    function manualLogin() {
-        console.log("manualLogin called");
+  function manualLogin() {
+    console.log("manualLogin called");
 
-        const data = {
-            RA: document.getElementById("RA").value,
-            password: document.getElementById("password").value
-        }
+    const data = {
+      RA: document.getElementById("RA").value,
+      password: document.getElementById("password").value,
+    };
 
-        const WS = new WebSocket("ws://" + window.location.hostname + ":8080");
+    const WS = new WebSocket("ws://" + window.location.hostname + ":8080");
 
-        WS.onopen = () => {
-            WS.send("lgn" + JSON.stringify(data));
-        };
+    WS.onopen = () => {
+      WS.send("lgn" + JSON.stringify(data));
+    };
 
-        WS.onmessage = (event) => {
-            const header = event.data.substring(0, 3);
-            console.log("Data received: " + event.data);
+    WS.onmessage = (event) => {
+      const header = event.data.substring(0, 3);
+      console.log("Data received: " + event.data);
 
-            switch (header) {
-                case "chk":
+      switch (header) {
+        case "chk":
+          const chkinfo = {
+            SessionID: sessionStorage.getItem("Session_ID"),
+            AccountRef: sessionStorage.getItem("ID_Ref"),
+          };
 
-                    const chkinfo = {
-                        "SessionID": sessionStorage.getItem("Session_ID"),
-                        "AccountRef": sessionStorage.getItem("ID_Ref")
-                    }
+          console.log("Authentication requested");
+          // Debugging, there seems to be an error within the JSON
+          console.log(chkinfo);
 
-                    console.log("Authentication requested");
-                    // Debugging, there seems to be an error within the JSON
-                    console.log(chkinfo);
+          WS.send("chk" + JSON.stringify(chkinfo));
+          break;
 
-                    WS.send("chk" + JSON.stringify(chkinfo))
-                    break;
+        case "ath":
+          console.log("Authentication successful");
+          let auth_info = JSON.parse(
+            event.data.substring(3, event.data.length)
+          );
 
-                case "ath":
-                    console.log("Authentication successful");
-                    let auth_info = JSON.parse(event.data.substring(3, event.data.length));
+          console.log(auth_info);
 
-                    console.log(auth_info);
+          sessionStorage.setItem("ID_Ref", auth_info["ID_Ref"]);
+          sessionStorage.setItem("Session_ID", auth_info["Session_ID"]);
+          localStorage.setItem("RA", document.getElementById("RA").value);
 
-                    sessionStorage.setItem("ID_Ref", auth_info["ID_Ref"]);
-                    sessionStorage.setItem("Session_ID", auth_info["Session_ID"]);
-                    localStorage.setItem("RA", document.getElementById("RA").value)
+          document.location.href = "pagina_principal.html";
 
-                    document.location.href = "pagina_principal.html"
+          break;
+        case "cls":
+          WS.close("1000");
+          break;
+        default:
+          console.log(
+            "Data has been received, but no valid command was found: " +
+              event.data
+          );
+      }
+    };
+  }
 
-                    break;
-                case "cls":
-                    WS.close("1000");
-                    break;
-                default:
-                    console.log("Data has been received, but no valid command was found: " + event.data);
-            }
+  // Login setup
 
-        }
+  const submitbtn = document.getElementById("submit");
 
-    }
+  submitbtn.onclick = manualLogin;
 
-    // Login setup
-
-    const submitbtn = document.getElementById("submit");
-
-    submitbtn.onclick = manualLogin;
-
-    // TODO Do automatic login if possible
-
-}
+  // TODO Do automatic login if possible
+};

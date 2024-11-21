@@ -3,7 +3,7 @@ var socket = new WebSocket("ws://172.30.2.235:8080");
 window.onload = function () {
   console.log("Window has loaded");
 
-  // Get data based on Session data 
+  // Get data based on Session data
 
   // Verify if login info is valid, if it is not, return to login page
 };
@@ -66,7 +66,9 @@ function renderMsg(jsonmsg) {
   authorP.textContent = author;
   msgP.textContent = jsonmsg["messagecontent"];
   dateP.className = "msgTimeDate";
-  dateP.textContent = `${d.toLocaleDateString("pt-br", { weekday: "long" })}, ${d.getHours()}:${d.getMinutes()}`;
+  dateP.textContent = `${d.toLocaleDateString("pt-br", {
+    weekday: "long",
+  })}, ${d.getHours()}:${d.getMinutes()}`;
 
   mB.appendChild(authorP);
   mB.appendChild(msgP);
