@@ -1,7 +1,8 @@
 // General logic employed at the communities pages
 
-// Assign default value
-var SELECTED_COMMUNITY = 1;
+// GLOBAL variables
+var SELECTED_COMMUNITY = 1; // Assign default value
+var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 
 // FIXME Fix problems with "unrelated messages"
 
@@ -59,7 +60,7 @@ function rendermsg(data) {
 }
 
 // communitylogic.js function section
-function sendCommunitiesRequest(ws) { }
+function sendCommunitiesRequest() { }
 
 function renderCommunityPage(selectedCommunity) {
   const communityName = document.getElementById("communityname");
@@ -67,7 +68,7 @@ function renderCommunityPage(selectedCommunity) {
   communityName.textContent = selectedCommunity.Community_name;
 }
 
-function renderCommunityList(communitySection, commlist, ws) {
+function renderCommunityList(communitySection, commlist) {
   // Inside of community list there is going to be JSON
 
   /*
@@ -107,6 +108,7 @@ function renderCommunityList(communitySection, commlist, ws) {
         document.getElementById("communityname").textContent = community["community_name"];
         // Clear messages to switch context
         document.getElementById("messages").innerHTML = "";
+        // FIXME
         ws.send("gdm" + String(SELECTED_COMMUNITY));
       }
 
@@ -118,7 +120,7 @@ function renderCommunityList(communitySection, commlist, ws) {
 
 window.onload = () => {
   const sendbtn = document.getElementById("sendbtn");
-  const ws = new WebSocket("ws://" + window.location.hostname + ":8080");
+  
   // Stores community JSON
   /*
     Updated community model:
@@ -151,9 +153,8 @@ window.onload = () => {
       // Community received data
       case "msg":
         const datajson = JSON.parse(ev.data.substring(3, ev.data.length));
-        // FIXME
 
-        if (Number(datajson["to"]) == SELECTED_COMMUNITY) {
+        if (Number(datajson["to"]) === SELECTED_COMMUNITY) {
           rendermsg(ev.data);
         }
         else {
