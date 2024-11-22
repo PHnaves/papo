@@ -109,7 +109,7 @@ function renderCommunityList(communitySection, commlist) {
         // Clear messages to switch context
         document.getElementById("messages").innerHTML = "";
         // FIXME
-        ws.send("gdm" + String(SELECTED_COMMUNITY));
+        ws.send("gdm");
       }
 
       // TODO Render other stuff
@@ -138,7 +138,7 @@ window.onload = () => {
     console.log("Websocket connection has opened.");
     // get community list
     ws.send("gcl");
-    ws.send("gdm" + String(SELECTED_COMMUNITY))
+    ws.send("gdm");
   };
 
   ws.onmessage = (ev) => {
