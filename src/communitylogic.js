@@ -3,6 +3,44 @@
 // Assign default value
 var SELECTED_COMMUNITY = 1;
 
+// FIXME Fix problems with "unrelated messages"
+
+// Same rendermsg function from messages.js
+function rendermsg(data) {
+  // Get message -> check if message is theirs, apply style
+  data = data.substring(3, data.length);
+  const msgcamp = document.getElementById("messages");
+  const msginput = document.getElementById("msginput");
+  const divbubble = document.createElement("div");
+  const bubbletext = document.createElement("p");
+  const messagetime = document.createElement("span");
+
+  divbubble.className = "message sent";
+  messagetime.className = "message-time";
+
+  try {
+    data = JSON.parse(data);
+
+    if (data["user"] == localStorage.getItem("RA")) {
+      divbubble.className = "message sent";
+    } else {
+      divbubble.className = "message received";
+    }
+
+    msgcamp.appendChild(divbubble);
+    divbubble.appendChild(bubbletext);
+    divbubble.appendChild(messagetime);
+    bubbletext.textContent = data["messagecontent"];
+    messagetime.textContent = gettimeformsg();
+
+    // Scrolling automatically to last message, for convenience
+    msgcamp.scrollTop = msgcamp.scrollHeight;
+  } catch (e) {
+    console.log(`Error while rendering msg ${e}`);
+    console.log(`For reference, data: ${data}`);
+  }
+}
+
 function sendCommunitiesRequest(ws) { }
 
 function renderCommunityPage(selectedCommunity) {
@@ -11,7 +49,7 @@ function renderCommunityPage(selectedCommunity) {
   communityName.textContent = selectedCommunity.Community_name;
 }
 
-function renderCommunityList(communitySection, commlist) {
+function renderCommunityList(communitySection, commlist, ws) {
   // Inside of community list there is going to be JSON
 
   /*
@@ -50,7 +88,8 @@ function renderCommunityList(communitySection, commlist) {
 
         document.getElementById("communityname").textContent = community["community_name"];
         // Clear messages to switch context
-        document.getElementById("messages").innerHTML = ""
+        document.getElementById("messages").innerHTML = "";
+        ws.send("gdm" + String(SELECTED_COMMUNITY));
       }
 
       // TODO Render other stuff
@@ -78,6 +117,7 @@ window.onload = () => {
     console.log("Websocket connection has opened.");
     // get community list
     ws.send("gcl");
+    ws.send("gdm" + String(SELECTED_COMMUNITY))
   };
 
   ws.onmessage = (ev) => {
@@ -90,13 +130,25 @@ window.onload = () => {
     const command = ev.data.substring(0, 3);
     switch (command) {
       // Community received data
+      case "msg":
+        const datajson = ev.data.substring(3, ev.data.length);
+
+        if (Number(datajson["to"]) === SELECTED_COMMUNITY) {
+          rendermsg(ev.data);
+        }
+        else {
+          console.log("Received message unrelated to the community: " + ev.data);
+        }
+        // Check if message is related to the community
+
+        break;
       case "crd":
         try {
           const comdata = JSON.parse(ev.data.substring(3, ev.data.length));
           commlist.push(comdata);
 
           // Update list
-          renderCommunityList(communitySection, commlist);
+          renderCommunityList(communitySection, commlist, ws);
 
         } catch (e) {
           console.log("Attempted to parse: " + ev.data.substring(3, ev.data.length))

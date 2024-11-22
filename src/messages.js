@@ -21,7 +21,7 @@ function sendmsg() {
     user: localStorage.getItem("RA"),
     useravatar: 1,
     messagecontent: usertext,
-    to: "all",
+    to: 1,
   };
 
   console.log(data);
@@ -94,10 +94,10 @@ window.onload = function () {
     ws.send("gdm"); // Get past messages
     ws.send(
       "chk" +
-        JSON.stringify({
-          SessionID: sessionStorage.getItem("Session_ID"),
-          AccountRef: sessionStorage.getItem("ID_Ref"),
-        })
+      JSON.stringify({
+        SessionID: sessionStorage.getItem("Session_ID"),
+        AccountRef: sessionStorage.getItem("ID_Ref"),
+      })
     );
   };
   ws.onmessage = function (event) {
@@ -137,7 +137,7 @@ window.onload = function () {
       default:
         console.log(
           "Data has been received, but no valid command was found: " +
-            event.data
+          event.data
         );
     }
   };
