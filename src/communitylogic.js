@@ -7,6 +7,57 @@ var SELECTED_COMMUNITY = 1;
 
 // messages.js functions
 
+function gettimeformsg() {
+  const d = new Date();
+  const time = d.toLocaleString("pt-br", {
+    hour: "numeric",
+    minute: "numeric",
+  });
+  let t;
+  if (d.getHours() > 12) {
+    t = "PM";
+  } else {
+    t = "AM";
+  }
+
+  return time + " " + t;
+}
+
+function rendermsg(data) {
+  // Get message -> check if message is theirs, apply style
+  data = data.substring(3, data.length);
+  const msgcamp = document.getElementById("messages");
+  const msginput = document.getElementById("msginput");
+  const divbubble = document.createElement("div");
+  const bubbletext = document.createElement("p");
+  const messagetime = document.createElement("span");
+
+  divbubble.className = "message sent";
+  messagetime.className = "message-time";
+
+  try {
+    data = JSON.parse(data);
+
+    if (data["user"] == localStorage.getItem("RA")) {
+      divbubble.className = "message sent";
+    } else {
+      divbubble.className = "message received";
+    }
+
+    msgcamp.appendChild(divbubble);
+    divbubble.appendChild(bubbletext);
+    divbubble.appendChild(messagetime);
+    bubbletext.textContent = data["messagecontent"];
+    messagetime.textContent = gettimeformsg();
+
+    // Scrolling automatically to last message, for convenience
+    msgcamp.scrollTop = msgcamp.scrollHeight;
+  } catch (e) {
+    console.log(`Error while rendering msg ${e}`);
+    console.log(`For reference, data: ${data}`);
+  }
+}
+
 // communitylogic.js function section
 function sendCommunitiesRequest(ws) { }
 
@@ -99,9 +150,10 @@ window.onload = () => {
     switch (command) {
       // Community received data
       case "msg":
-        const datajson = ev.data.substring(3, ev.data.length);
+        const datajson = JSON.parse(ev.data.substring(3, ev.data.length));
         // FIXME
-        if (Number(datajson["to"]) === SELECTED_COMMUNITY) {
+
+        if (Number(datajson["to"]) == SELECTED_COMMUNITY) {
           rendermsg(ev.data);
         }
         else {
