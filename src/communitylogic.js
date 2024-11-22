@@ -5,42 +5,9 @@ var SELECTED_COMMUNITY = 1;
 
 // FIXME Fix problems with "unrelated messages"
 
-// Same rendermsg function from messages.js
-function rendermsg(data) {
-  // Get message -> check if message is theirs, apply style
-  data = data.substring(3, data.length);
-  const msgcamp = document.getElementById("messages");
-  const msginput = document.getElementById("msginput");
-  const divbubble = document.createElement("div");
-  const bubbletext = document.createElement("p");
-  const messagetime = document.createElement("span");
+// messages.js functions
 
-  divbubble.className = "message sent";
-  messagetime.className = "message-time";
-
-  try {
-    data = JSON.parse(data);
-
-    if (data["user"] == localStorage.getItem("RA")) {
-      divbubble.className = "message sent";
-    } else {
-      divbubble.className = "message received";
-    }
-
-    msgcamp.appendChild(divbubble);
-    divbubble.appendChild(bubbletext);
-    divbubble.appendChild(messagetime);
-    bubbletext.textContent = data["messagecontent"];
-    messagetime.textContent = gettimeformsg();
-
-    // Scrolling automatically to last message, for convenience
-    msgcamp.scrollTop = msgcamp.scrollHeight;
-  } catch (e) {
-    console.log(`Error while rendering msg ${e}`);
-    console.log(`For reference, data: ${data}`);
-  }
-}
-
+// communitylogic.js function section
 function sendCommunitiesRequest(ws) { }
 
 function renderCommunityPage(selectedCommunity) {
@@ -99,6 +66,7 @@ function renderCommunityList(communitySection, commlist, ws) {
 }
 
 window.onload = () => {
+  const sendbtn = document.getElementById("sendbtn");
   const ws = new WebSocket("ws://" + window.location.hostname + ":8080");
   // Stores community JSON
   /*
@@ -132,7 +100,7 @@ window.onload = () => {
       // Community received data
       case "msg":
         const datajson = ev.data.substring(3, ev.data.length);
-
+        // FIXME
         if (Number(datajson["to"]) === SELECTED_COMMUNITY) {
           rendermsg(ev.data);
         }
@@ -167,5 +135,33 @@ window.onload = () => {
         );
         break;
     }
-  };
+
+    // Events
+    // adapted rendermsg function from messages.js
+    sendbtn.onclick = () => {
+      let usertext = document.getElementById("msginput").value
+
+      // Had to chain, what a shame
+      if (usertext.length == 0) {
+        return;
+      }
+      // Character limit of 2000 chars, no security implemented server-side because I don't think anyone is going to abuse that
+      if (usertext.length > 2000) {
+        usertext = usertext.substring(0, 2000);
+      }
+
+      const data = {
+        user: localStorage.getItem("RA"),
+        useravatar: 1,
+        messagecontent: usertext,
+        to: SELECTED_COMMUNITY,
+      };
+
+      console.log(data);
+
+      ws.send("msg" + JSON.stringify(data));
+
+      msginput.value = "";
+    };
+  }
 };
