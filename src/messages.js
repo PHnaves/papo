@@ -88,7 +88,16 @@ window.onload = function () {
 
   sendbtn.addEventListener("click", sendmsg);
 
-  ws.onopen = function () {
+   // Press enter to send message
+
+  document.getElementById("msginput").addEventListener("keyup", (ev) => {
+    if (ev.key == "Enter") {
+      sendmsg();
+    }
+  }
+  );
+
+ ws.onopen = function () {
     console.log("Connection established");
     ws.send("png");
     ws.send("gdm"); // Get past messages

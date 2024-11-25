@@ -5,6 +5,32 @@ var SELECTED_COMMUNITY = 1; // Assign default value
 var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 
 // messages.js functions
+function sendmsg() {
+  let usertext = msginput.value;
+
+  // Had to chain, what a shame
+  if (usertext.length == 0) {
+    return;
+  }
+  // Character limit of 2000 chars, no security implemented server-side because I don't think anyone is going to abuse that
+  if (usertext.length > 2000) {
+    usertext = usertext.substring(0, 2000);
+  }
+
+  const data = {
+    user: localStorage.getItem("RA"),
+    useravatar: 1,
+    messagecontent: usertext,
+    to: SELECTED_COMMUNITY,
+  };
+
+  console.log(data);
+
+  ws.send("msg" + JSON.stringify(data));
+
+  msginput.value = "";
+}
+
 
 function gettimeformsg() {
   const d = new Date();
@@ -118,7 +144,7 @@ function renderCommunityList(communitySection, commlist) {
 
 window.onload = () => {
   const sendbtn = document.getElementById("sendbtn");
-  
+
   // Stores community JSON
   /*
     Updated community model:
@@ -137,6 +163,25 @@ window.onload = () => {
     // get community list
     ws.send("gcl");
     ws.send("gdm");
+    // Send verification
+    ws.send(
+      "chk" +
+      JSON.stringify({
+        SessionID: sessionStorage.getItem("Session_ID"),
+        AccountRef: sessionStorage.getItem("ID_Ref"),
+      })
+    );
+
+    // Press enter to send message
+
+    document.getElementById("msginput").addEventListener("keyup", (ev) => {
+      if (ev.key == "Enter") {
+        sendmsg();
+      }
+    }
+    );
+
+
   };
 
   ws.onmessage = (ev) => {
@@ -150,16 +195,17 @@ window.onload = () => {
     switch (command) {
       // Community received data
       case "msg":
+        console.log("Received message by server")
         const datajson = JSON.parse(ev.data.substring(3, ev.data.length));
 
         if (Number(datajson["to"]) === SELECTED_COMMUNITY) {
+          console.log("Rendering message..")
           rendermsg(ev.data);
         }
         else {
           console.log("Received message unrelated to the community: " + ev.data);
         }
         // Check if message is related to the community
-
         break;
       case "crd":
         try {
@@ -189,30 +235,6 @@ window.onload = () => {
 
     // Events
     // adapted rendermsg function from messages.js
-    sendbtn.onclick = () => {
-      let usertext = document.getElementById("msginput").value
-
-      // Had to chain, what a shame
-      if (usertext.length == 0) {
-        return;
-      }
-      // Character limit of 2000 chars, no security implemented server-side because I don't think anyone is going to abuse that
-      if (usertext.length > 2000) {
-        usertext = usertext.substring(0, 2000);
-      }
-
-      const data = {
-        user: localStorage.getItem("RA"),
-        useravatar: 1,
-        messagecontent: usertext,
-        to: SELECTED_COMMUNITY,
-      };
-
-      console.log(data);
-
-      ws.send("msg" + JSON.stringify(data));
-
-      msginput.value = "";
-    };
+    sendbtn.onclick = () => { sendmsg() };
   }
 };
