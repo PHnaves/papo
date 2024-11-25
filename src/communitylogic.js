@@ -107,6 +107,8 @@ function renderCommunityList(communitySection, commlist) {
   */
 
   // Also implements functionality
+
+  communitySection.innerHTML = "";
   commlist.forEach((community) => {
     const maindiv = document.createElement("div");
     const commname = document.createElement("h5");

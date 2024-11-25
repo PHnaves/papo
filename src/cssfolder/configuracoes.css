@@ -6,32 +6,28 @@
     --text-color: #000000;
     --link-color: #000000;
     --link-hover-color: #007bff;
-    --sidebar-icons-color: white;
-    --sidebar-icons-hover-color: #000000;
     --border-color: #ccc;
     --ra-bg: #cccccc8e;
     --estado-bg: #cccccc8e;
 }
 
 .dark-theme {
-    --primary-bg: #1e1e1e; /* Fundo principal escuro */
-    --sidebar-bg: rgba(45, 45, 45, 1); /* Cor escura para a sidebar */
-    --text-color: #e0e0e0; /* Texto em um tom claro para legibilidade */
+    --primary-bg: #000000; /* Fundo principal escuro */
+    --sidebar-bg: #1E3E62; /* Cor escura para a sidebar */
+    --text-color: #d4d4d4; /* Texto em um tom claro para legibilidade */
     /* --link-color: #e0e0e0; Cor clara para links */
     --link-hover-color: #4a90e2; /* Azul suave para o hover dos links */
-    --footer-icon-color: #d1d1d1; /* Cor clara para os ícones do rodapé */
-    --footer-icon-hover-color: #ffffff; /* Branco para o hover dos ícones do rodapé */
-    --icon-active-color: #ffffff; /* Branco para ícones ativos */
-    --icon-active-size: 2.3rem; /* Tamanho dos ícones ativos permanece o mesmo */
     /* --border-color: rgba(255, 255, 255, 0.2); Borda clara suave */
 }
 
-
-body {
-    background-color: var(--primary-bg);
-    font-family: 'Roboto', sans-serif;
+* {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dark-theme body {
+    background-color: var(--primary-bg);
     color: var(--text-color);
 }
 
@@ -112,6 +108,9 @@ body {
 }
 
 .configuracoes-area {
+    /* borda superior e inferior esquerda arrendondadas */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     width: 70%;
     color: black;
     background-color: white;

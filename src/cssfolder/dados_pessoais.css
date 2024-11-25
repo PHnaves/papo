@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@font-face {
+    font-family: 'Ghost HOuses';
+    src: url('fontes/Ghost HOuses.otf');
+}
 
 /* Definição de variáveis de cor */
 :root {
     --background-color: #f4f4f4;
     --sidebar-bg: rgba(63, 162, 246, 1);
-    --chat-area-bg: white;
     --sidebar-text-color: white;
     --message-sent-bg: #007bff;
     --message-received-bg: #ccc;
@@ -12,18 +15,19 @@
     --input-hover-bg: #006ee4;
 }
 
-.dark-theme  {
+.dark-theme {
     --background-color: #000000; /* Um cinza escuro suave para o fundo */
     --sidebar-bg: #1E3E62; /* Um tom de azul-escuro acinzentado */
-    /* --chat-area-bg: #001F3F;/ */
     --sidebar-text-color: #d4d4d4; /* Um cinza claro para contrastar bem com o azul escuro */
-    --message-sent-bg: #1E3E62; /* Um azul vibrante para mensagens enviadas */
+    --message-sent-bg: #0069d1; /* Um azul vibrante para mensagens enviadas */
     --message-received-bg: #353940; /* Cinza médio, bem balanceado para mensagens recebidas */
     --message-received: #d1d1d1; /* Um cinza claro para o texto das mensagens recebidas */
     --input-border: #4c5057; /* Um tom mais escuro de cinza para a borda do input */
     --input-hover-bg: #005bb5; /* Azul mais forte para hover nos inputs */
 }
 
+
+/* Estilo básico da página */
 * {
     margin: 0;
     padding: 0;
@@ -79,12 +83,6 @@
     transform: translateY(-3px);
 }
 
-/* Ícone ativo na barra superior */
-.icon-bar a img.active {
-    width: 50px;
-    height: 50px;
-}
-
 /* Ícones no rodapé da sidebar */
 .footer-icons {
     display: flex;
@@ -104,44 +102,6 @@
     transform: translateY(-3px);
 }
 
-/* Estilo da lista de contatos */
-.contacts {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    /* Personaliza o scroll da lista de contatos */
-    overflow-y: overlay;
-    scrollbar-width: thin;
-    scrollbar-color: white none;
-    &::-webkit-scrollbar {
-        width: 2px;
-    }
-    &::-webkit-scrollbar-track {
-        background: black;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: black;
-        border-radius: 10px;
-    }
-}
-
-/* Estilo de cada item de contato */
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #cccccc71;
-    padding: 10px;
-}
-
-/* Estilo da imagem dos contatos */
-.contact-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-
 /* Container principal do chat */
 .container-chat {
     display: flex;
@@ -153,122 +113,104 @@
 }
 
 
-/* Área de chat */
-.chat-area {
+/* Área de dados */
+.dados-area {
     /* borda superior e inferior esquerda arrendondadas */
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     width: 70%;
-    background-color: var(--chat-area-bg);
+    background-color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-}
-
-/* Cabeçalho da área de chat */
-.chat-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ccc;
-}
-
-/* Estilo da imagem do usuário no chat */
-.chat-header img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-
-/* Ícones do cabeçalho do chat */
-.chat-icons img {
-    width: 25px;
-    height: 25px;
-    margin-left: 15px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.chat-icons img:hover {
-    transform: translateY(-2px);
-}
-
-/* Área das mensagens */
-.messages {
-    margin-top: 20px;
     overflow-y: auto;
 }
 
-/* Estilo das mensagens */
-.message {
-    /* word-wrap: break-word;
-    max-width: 250px;
-    max-height: 250px; */
-    padding: 12px 25px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    max-width: 70%;
-    position: relative;
-}
-
-/* Mensagens enviadas alinhadas à direita */
-.message.sent {
-    background-color: var(--message-sent-bg);
-    color: white;
-    align-self: flex-end;
-    margin-left: auto; /* Alinha à direita */
-}
-
-/* Mensagens recebidas alinhadas à esquerda */
-.message.received {
-    background-color: var(--message-received-bg);
-    color: var(--message-received);
-    align-self: flex-start;
-    margin-right: auto; /* Alinha à esquerda */
+/* Cabeçalho da área de chat */
+.dados-header {
+    font-family: 'Ghost HOuses';
+    text-align: center;
+    margin: 15px;
 }
 
 
-/* Estilo do tempo das mensagens */
-.message-time {
-    font-size: 12px;
-    margin-top: 5px;
-    text-align: right;
+
+profile-container {
+  width: 500px;
+  height: 700px;
+  margin: 5px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Área de input de mensagens */
-.input-area {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #ccc;
-    padding-top: 15px;
+/* Profile Header */
+
+.profile-header img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Campo de input para digitar mensagens */
-.input-area input {
-    width: calc(100% - 50px);
-    padding: 12px;
-    border-radius: 20px;
-    border: 1px solid var(--input-border);
-    outline: none;
-    margin-right: 10px;
+/* Info Box */
+
+.info-box {
+  background-color: #f1f1f1;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
 }
 
-/* Botão de enviar mensagens */
-.input-area button {
-    background-color: var(--message-sent-bg);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 50px;
-    color: white;
-    cursor: pointer;
+/* Nuvem */
+
+.nuvem {
+  background-image: url('icons8-nuvem-100.png');
+  background-size: cover;
+  background-color: #fff;
+  color: #000;
+  background-position: center;
+  padding: 40px 30px 30px 35px;
+  margin: 5px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.input-area button:hover {
-    background-color: var(--input-hover-bg);
+.nuvem:hover {
+  transform: scale(1.1);
 }
+
+/* Form */
+
+.form-floating textarea {
+  border-radius: 15px;
+  border: 1px solid #ced4da;
+}
+
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+}
+
+.form-control {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
 
 
 /* Estilos responsivos para telas menores */
@@ -279,25 +221,18 @@
     }
 
     .sidebar,
-    .chat-area {
+    .dados-area {
         width: 100%;
         height: auto;
         border-bottom: 2px solid #ccc;
     }
 
-    .chat-header img {
-        width: 50px;
-        height: 50px;
-    }
+    .nuvem {
+        padding: 25px 15px 15px 20px;
+        margin: 10px;
+        font-size: 10px;
+      }
 
-    .chat-icons img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .input-area input {
-        width: calc(100% - 60px);
-    }
 }
 
 @media (max-width: 425px) {
@@ -307,23 +242,16 @@
     }
 
     .sidebar,
-    .chat-area {
+    .dados-area {
         width: 100%;
         height: auto;
         border-bottom: 2px solid #ccc;
     }
 
-    .chat-header img {
-        width: 40px;
-        height: 40px;
-    }
+    .nuvem {
+        margin: 10px;
+        padding: 20px 10px 10px 15px;
+        font-size: 10px;
+      }
 
-    .chat-icons img {
-        width: 15px;
-        height: 15px;
-    }
-
-    .input-area input {
-        width: calc(100% - 50px);
-    }
 }

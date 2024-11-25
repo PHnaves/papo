@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
+:root{
+    --primary-bg: #f4f7f6;
+    --primary-color: #ffffff;
+    --secondary-bg: #3FA2F6;
+    --input-bg: #fff;
+    --input-bg-hover: #f0f0f0;
+    --text-color: #333;
+    --btn-bg: #fff;
+    --btn-hover-bg: #e9ecef;
+    --link-color: #ffffff;
+    --link-hover-color: rgba(255, 255, 255, 0.7);
+    --btn-text-color: #0d6efd;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme {
+    --primary-bg: #1a1a1a;
+    --secondary-bg: #3e4f67;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,8 +31,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f4f7f6;
-    color: #ffffff;
+    background-color: var(--primary-bg);
+    color: var(--primary-color);
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
 }
@@ -20,9 +40,9 @@ body {
 .wrapper {
     width: 400px;
     padding: 40px;
-    background: #3FA2F6;
+    background: var(--secondary-bg);
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px var(--shadow-color);
     text-align: center;
     animation: slide-in 1s ease-out forwards;
 }
@@ -39,14 +59,15 @@ body {
 }
 
 @font-face {
-    font-family: 'GhostHOuses';
-    src: url('fontes/GhostHOuses.otf');
+    font-family: 'Ghost HOuses';
+    src: url('fontes/Ghost HOuses.otf');
 }
+
 .wrapper h1 {
-    font-family: 'GhostHOuses';
+    font-family: 'Ghost HOuses';
     font-size: 2rem;
     letter-spacing: 2px;
-    color: #ffffff;
+    color: var(--primary-color);
     animation: fade-in 1.5s ease-out forwards;
 }
 
@@ -82,8 +103,8 @@ body {
     padding: 15px 20px 15px 45px;
     border: none;
     border-radius: 30px;
-    background: #fff;
-    color: #333;
+    background: var(--input-bg);
+    color: var(--text-color);
     outline: none;
     transition: background 0.3s ease;
 }
@@ -99,12 +120,12 @@ body {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #333;
+    color: var(--text-color);
     transition: color 0.3s ease;
 }
 
 .input-box input:focus {
-    background: #f0f0f0;
+    background: var(--input-bg-hover);
 }
 
 .remember-forgot {
@@ -120,7 +141,7 @@ body {
 }
 
 .remember-forgot a {
-    color: #ffffff;
+    color: var(--link-color);
     text-decoration: none;
     transition: text-decoration 0.3s ease;
 }
@@ -134,8 +155,8 @@ body {
     padding: 15px;
     border: none;
     border-radius: 30px;
-    background: #fff;
-    color: #0d6efd;
+    background: var(--btn-bg);
+    color: var(--btn-text-color);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -143,7 +164,7 @@ body {
 }
 
 .btn:hover {
-    background: #e9ecef;
+    background: var(--btn-hover-bg);
     transform: scale(1.05);
 }
 
@@ -154,7 +175,7 @@ body {
 }
 
 .register-link a {
-    color: #fff;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: 600;
     transition: text-decoration 0.3s ease;

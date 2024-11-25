@@ -17,26 +17,22 @@
 }
 
 .dark-theme {
-    --bg-color: #1e1e1e; /* Fundo principal escuro */
-    --sidebar-bg: rgba(45, 45, 45, 1); /* Cor escura para a sidebar */
-    --sidebar-text: #e0e0e0; /* Texto da sidebar em um tom claro */
-    --comunidade-bg: #2a2a2a; /* Fundo escuro para a comunidade */
-    --sidebar-icon-color: #d1d1d1; /* Cor clara para os ícones da sidebar */
-    --sidebar-icon-hover-color: #ffffff; /* Branco para o hover dos ícones da sidebar */
-    --header-icons-color: #d1d1d1; /* Branco para os ícones do cabeçalho */
-    --active-icon-color: #ffffff; /* Branco para ícones ativos */
+    --bg-color: #000000; /* Fundo principal escuro */
+    --sidebar-bg: #1E3E62; /* Cor escura para a sidebar */
+    --sidebar-text: #d4d4d4; /* Texto da sidebar em um tom claro */
     --textarea-bg: #ffffff; /* Fundo escuro para áreas de texto */
     --textarea-border: #4a90e2; /* Azul suave para a borda da área de texto */
     --textarea-focus-shadow: rgba(74, 144, 226, 0.5); /* Sombra azul adaptada para o modo escuro */
-    --icon-hover-color: #ffffff; /* Branco para o hover dos ícones */
 }
 
-
-body {
-    background-color: var(--bg-color);
-    font-family: 'Roboto', sans-serif;
+* {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dark-theme body {
+    background-color: var(--bg-color);
 }
 
 /* Container principal de chat */
@@ -121,6 +117,9 @@ body {
 
 /* Área da comunidade */
 .comunidade-area {
+    /* borda superior e inferior esquerda arrendondadas */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     width: 70%;
     background-color: var(--comunidade-bg);
     padding: 20px;
@@ -221,12 +220,10 @@ body {
     }
 
     .nuvem {
-        background-position: center;
-        padding: 30px 20px 20px 25px;
+        padding: 25px 15px 15px 20px;
         margin: 10px;
-        border: none;
         font-size: 10px;
-    }
+      }
 
     .input-area input {
         width: calc(100% - 60px);
