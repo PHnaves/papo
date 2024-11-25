@@ -4,8 +4,6 @@
 var SELECTED_COMMUNITY = 1; // Assign default value
 var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 
-// FIXME Fix problems with "unrelated messages"
-
 // messages.js functions
 
 function gettimeformsg() {
@@ -112,7 +110,7 @@ function renderCommunityList(communitySection, commlist) {
         ws.send("gdm");
       }
 
-      // TODO Render other stuff
+      // Render other stuff
 
     }
   });
