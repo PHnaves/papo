@@ -156,6 +156,10 @@
     padding: 10px;
 }
 
+.contact-item:hover {
+    cursor: pointer;
+}
+
 /* Estilo da imagem dos contatos */
 .contact-item img {
     width: 50px;
