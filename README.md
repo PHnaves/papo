@@ -15,13 +15,11 @@ Este repositório é uma implementação prática do que será utilizado pelo cl
 
 Objetivo: comunidades
 
-- [ ] Comunidades completamente funcionais
-- [ ] Listar comunidades na página de comunidades
-- [ ] Acesso às comunidades
-- [ ] Implementar o retorno de uma lista de comunidades pelo servidor
-- [ ] Refazer o sistema de mensagens e adequar ao contexto das comunidades
-
-Objetivo: mensagens privadas
+- [X] Comunidades completamente funcionais
+- [X] Listar comunidades na página de comunidades
+- [X] Acesso às comunidades
+- [X] Implementar o retorno de uma lista de comunidades pelo servidor
+- [X] Refazer o sistema de mensagens e adequar ao contexto das comunidades
 
 Planejado: compilar o código presente na página com closure compiler, e mover o código fonte para outra pasta.
 
