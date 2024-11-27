@@ -19,14 +19,15 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Profile Header */
+@font-face {
+  font-family: 'GhostHOuses';
+  src: url('fontes/GhostHOuses.otf');
+}
 
-.profile-header img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+/* Profile Header */
+.profile-header h1 {
+  font-family: 'GhostHOuses';
+  margin-bottom: 50px;
 }
 
 /* Arrows */

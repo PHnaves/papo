@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@font-face {
+    font-family: 'GhostHOuses';
+    src: url('fontes/GhostHOuses.otf');
+}
 
 /* Definição de variáveis de cor */
 :root {
@@ -137,6 +141,14 @@
     cursor: pointer;
 }
 
+/* Estilo da imagem dos contatos */
+.contact-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
 
 /* Container principal do chat */
 .container-chat {
@@ -172,103 +184,72 @@
     border-bottom: 1px solid #ccc;
 }
 
-@font-face {
+/* Estilo da imagem do usuário no chat */
+.chat-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.chat-header h1{
     font-family: 'GhostHOuses';
-    src: url('fontes/GhostHOuses.otf');
-}
-
-.chat-header .chat-title {
-    font-family: 'GhostHOuses';
+    text-align: center;
 }
 
 
-/* Ícones do cabeçalho do chat */
-.chat-icons img {
-    width: 25px;
-    height: 25px;
-    margin-left: 15px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
+/* parte de pedidos de amizade */
+.friend-requests {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 50;
+  }
 
-.chat-icons img:hover {
-    transform: translateY(-2px);
-}
-
-/* Área das mensagens */
-.messages {
-    margin-top: 20px;
-    overflow-y: auto;
-}
-
-/* Estilo das mensagens */
-.message {
-    /* word-wrap: break-word;
-    max-width: 250px;
-    max-height: 250px; */
-    padding: 12px 25px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    max-width: 70%;
-    position: relative;
-}
-
-/* Mensagens enviadas alinhadas à direita */
-.message.sent {
-    background-color: var(--message-sent-bg);
-    color: white;
-    align-self: flex-end;
-    margin-left: auto; /* Alinha à direita */
-}
-
-/* Mensagens recebidas alinhadas à esquerda */
-.message.received {
-    background-color: var(--message-received-bg);
-    color: var(--message-received);
-    align-self: flex-start;
-    margin-right: auto; /* Alinha à esquerda */
-}
-
-
-/* Estilo do tempo das mensagens */
-.message-time {
-    font-size: 12px;
-    margin-top: 5px;
-    text-align: right;
-}
-
-/* Área de input de mensagens */
-.input-area {
+  .pedido {
     display: flex;
     align-items: center;
-    border-top: 1px solid #ccc;
-    padding-top: 15px;
-}
-
-/* Campo de input para digitar mensagens */
-.input-area input {
-    width: calc(100% - 50px);
-    padding: 12px;
-    border-radius: 20px;
-    border: 1px solid var(--input-border);
-    outline: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .pedido img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     margin-right: 10px;
-}
-
-/* Botão de enviar mensagens */
-.input-area button {
-    background-color: var(--message-sent-bg);
+  }
+  
+  .message-content {
+    flex: 1;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 20px;
+  }
+  
+  .accept-btn, .decline-btn {
+    background-color: #4CAF50;
+    color: #fff;
     border: none;
-    padding: 12px 20px;
-    border-radius: 50px;
-    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-}
-
-.input-area button:hover {
-    background-color: var(--input-hover-bg);
-}
-
+    border-radius: 10px;
+  }
+  
+  .accept-btn:hover, .decline-btn:hover {
+    background-color: #3e8e41;
+  }
+  
+  .decline-btn {
+    margin-left: 10px;
+    background-color: #e74c3c;
+  }
+  
+  .decline-btn:hover {
+    background-color: #c0392b;
+  }
 
 /* Estilos responsivos para telas menores */
 @media (max-width: 1000px) {

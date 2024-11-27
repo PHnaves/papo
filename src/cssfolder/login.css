@@ -59,12 +59,12 @@ body {
 }
 
 @font-face {
-    font-family: 'Ghost HOuses';
-    src: url('fontes/Ghost HOuses.otf');
+    font-family: 'GhostHOuses';
+    src: url('fontes/GhostHOuses.otf');
 }
 
 .wrapper h1 {
-    font-family: 'Ghost HOuses';
+    font-family: 'GhostHOuses';
     font-size: 2rem;
     letter-spacing: 2px;
     color: var(--primary-color);

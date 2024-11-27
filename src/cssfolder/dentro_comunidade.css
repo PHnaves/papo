@@ -236,12 +236,20 @@
     margin-right: auto; /* Alinha à esquerda */
 }
 
-.message.received img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.solicitacao{
+    background-color: rgba(63, 162, 246, 1);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
+  .solicitacao:hover{
+    background-color: rgb(1, 136, 255);
+  }
+  
 .chat-header {
     display: flex;
     justify-content: space-between;
@@ -256,12 +264,12 @@
 }
 
 @font-face {
-    font-family: 'Ghost HOuses';
-    src: url('fontes/Ghost HOuses.otf');
+    font-family: 'GhostHOuses';
+    src: url('fontes/GhostHOuses.otf');
 }
 
 .chat-header .community-info h2 {
-    font-family: 'Ghost HOuses';
+    font-family: 'GhostHOuses';
     margin: 0;
 }
 

@@ -1,8 +1,8 @@
 // General logic employed at the communities pages
 
 // GLOBAL variables
-var SELECTED_COMMUNITY = 1; // Assign default value
-var ws = new WebSocket("ws://" + window.location.hostname + ":8080");
+let SELECTED_COMMUNITY = 1; // Assign default value
+let ws = new WebSocket("ws://" + window.location.hostname + ":8080");
 
 // messages.js functions
 function sendmsg() {
@@ -31,7 +31,6 @@ function sendmsg() {
   msginput.value = "";
 }
 
-
 function gettimeformsg() {
   const d = new Date();
   const time = d.toLocaleString("pt-br", {
@@ -52,7 +51,6 @@ function rendermsg(data) {
   // Get message -> check if message is theirs, apply style
   data = data.substring(3, data.length);
   const msgcamp = document.getElementById("messages");
-  const msginput = document.getElementById("msginput");
   const divbubble = document.createElement("div");
   const bubbletext = document.createElement("p");
   const messagetime = document.createElement("span");
@@ -63,17 +61,32 @@ function rendermsg(data) {
   try {
     data = JSON.parse(data);
 
-    if (data["user"] == localStorage.getItem("RA")) {
-      divbubble.className = "message sent";
-    } else {
-      divbubble.className = "message received";
-    }
-
     msgcamp.appendChild(divbubble);
     divbubble.appendChild(bubbletext);
     divbubble.appendChild(messagetime);
     bubbletext.textContent = data["messagecontent"];
     messagetime.textContent = gettimeformsg();
+
+    if (data["user"] == localStorage.getItem("RA")) {
+      divbubble.className = "message sent";
+    } else {
+      divbubble.className = "message received";
+      // Also add friend request btn
+      const friendrequestbtn = document.createElement("button");
+      friendrequestbtn.textContent = "Solicitação";
+      friendrequestbtn.className = "solicitacao"
+      divbubble.appendChild(friendrequestbtn);
+      
+      friendrequestbtn.onclick = () =>
+      {
+        const d = {
+          from: localStorage.getItem("RA"),
+          to: data["user"]
+        }
+        // Send friend request
+        ws.send("frq" + JSON.stringify(d));
+      }
+    }
 
     // Scrolling automatically to last message, for convenience
     msgcamp.scrollTop = msgcamp.scrollHeight;
@@ -84,7 +97,6 @@ function rendermsg(data) {
 }
 
 // communitylogic.js function section
-function sendCommunitiesRequest() { }
 
 function renderCommunityPage(selectedCommunity) {
   const communityName = document.getElementById("communityname");
@@ -114,15 +126,15 @@ function renderCommunityList(communitySection, commlist) {
     const commname = document.createElement("h5");
     const likes = document.createElement("p");
 
-    maindiv.className = "contact-item"
-    commname.textContent = community["community_name"]
-    likes.textContent = community["likes"]
+    maindiv.className = "contact-item";
+    commname.textContent = community["community_name"];
+    likes.textContent = community["likes"];
 
     communitySection.appendChild(maindiv);
     maindiv.appendChild(commname);
     maindiv.appendChild(likes);
 
-    // TODO Implement community functionality, such as onclick below
+    //  Implement community functionality, such as onclick below
 
     // User clicked on main div of this community
     maindiv.onclick = () => {
@@ -131,16 +143,15 @@ function renderCommunityList(communitySection, commlist) {
       if (SELECTED_COMMUNITY != Number(community["community_id"])) {
         SELECTED_COMMUNITY = Number(community["community_id"]);
 
-        document.getElementById("communityname").textContent = community["community_name"];
+        document.getElementById("communityname").textContent =
+          community["community_name"];
         // Clear messages to switch context
         document.getElementById("messages").innerHTML = "";
-        // FIXME
         ws.send("gdm");
       }
 
       // Render other stuff
-
-    }
+    };
   });
 }
 
@@ -168,10 +179,10 @@ window.onload = () => {
     // Send verification
     ws.send(
       "chk" +
-      JSON.stringify({
-        SessionID: sessionStorage.getItem("Session_ID"),
-        AccountRef: sessionStorage.getItem("ID_Ref"),
-      })
+        JSON.stringify({
+          SessionID: sessionStorage.getItem("Session_ID"),
+          AccountRef: sessionStorage.getItem("ID_Ref"),
+        })
     );
 
     // Press enter to send message
@@ -180,10 +191,7 @@ window.onload = () => {
       if (ev.key == "Enter") {
         sendmsg();
       }
-    }
-    );
-
-
+    });
   };
 
   ws.onmessage = (ev) => {
@@ -196,29 +204,32 @@ window.onload = () => {
     const command = ev.data.substring(0, 3);
     switch (command) {
       // Community received data
-      case "msg":
-        console.log("Received message by server")
+      case "msg": {
+        console.log("Received message by server");
         const datajson = JSON.parse(ev.data.substring(3, ev.data.length));
 
         if (Number(datajson["to"]) === SELECTED_COMMUNITY) {
-          console.log("Rendering message..")
+          console.log("Rendering message..");
           rendermsg(ev.data);
-        }
-        else {
-          console.log("Received message unrelated to the community: " + ev.data);
+        } else {
+          console.log(
+            "Received message unrelated to the community: " + ev.data
+          );
         }
         // Check if message is related to the community
         break;
+      }
       case "crd":
         try {
           const comdata = JSON.parse(ev.data.substring(3, ev.data.length));
           commlist.push(comdata);
 
           // Update list
-          renderCommunityList(communitySection, commlist, ws);
-
+          renderCommunityList(communitySection, commlist);
         } catch (e) {
-          console.log("Attempted to parse: " + ev.data.substring(3, ev.data.length))
+          console.log(
+            "Attempted to parse: " + ev.data.substring(3, ev.data.length)
+          );
           console.log("Error while trying to parse community data JSON: " + e);
           return;
         }
@@ -237,6 +248,8 @@ window.onload = () => {
 
     // Events
     // adapted rendermsg function from messages.js
-    sendbtn.onclick = () => { sendmsg() };
-  }
+    sendbtn.onclick = () => {
+      sendmsg();
+    };
+  };
 };

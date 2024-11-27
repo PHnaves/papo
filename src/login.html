@@ -1,199 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="cssfolder/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="cssfolder/login.css" />
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: #f4f7f6;
-        color: #ffffff;
-        font-family: 'Arial', sans-serif;
-        overflow: hidden;
-    }
-
-    .wrapper {
-        width: 400px;
-        padding: 40px;
-        background: rgba(0, 51, 255, 1);        ;
-        border-radius: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        animation: slide-in 1s ease-out forwards;
-    }
-
-    @keyframes slide-in {
-        0% {
-            transform: translatex(-100%);
-            opacity: 0;
-        }
-        100% {
-            transform: translatex(0);
-            opacity: 1;
-        }
-    }
-
-    .wrapper h1 {
-        font-size: 2rem;
-        color: #ffffff;
-        animation: fade-in 1.5s ease-out forwards;
-    }
-
-    @keyframes fade-in {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-
-    .input-box {
-        position: relative;
-        width: 100%;
-        margin-bottom: 1.5rem;
-        animation: fade-in-up 1.8s ease-out forwards;
-    }
-
-    @keyframes fade-in-up {
-        0% {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    .input-box input {
-        width: 100%;
-        padding: 15px 20px 15px 45px;
-        border: none;
-        border-radius: 30px;
-        background: #fff;
-        color: #333;
-        outline: none;
-        transition: background 0.3s ease;
-    }
-
-    .input-box input::placeholder {
-        color: rgba(0, 0, 0, 0.7);
-    }
-
-    .input-box i {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #333;
-        transition: color 0.3s ease;
-    }
-
-    .input-box input:focus {
-        background: #f0f0f0;
-    }
-
-    .input-box input:focus + i {
-        color: #000000;
-    }
-
-    .remember-forgot {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.875rem;
-        margin: -10px 0 20px;
-        animation: fade-in-up 2s ease-out forwards;
-    }
-
-    .remember-forgot label {
-        cursor: pointer;
-    }
-
-    .remember-forgot a {
-        color: #ffffff;
-        text-decoration: none;
-        transition: text-decoration 0.3s ease;
-    }
-
-    .remember-forgot a:hover {
-        text-decoration: underline;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 30px;
-        background: #fff;
-        color: #0d6efd;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .btn:hover {
-        background: #e9ecef;
-        transform: scale(1.05);
-    }
-
-    .register-link {
-        font-size: 0.875rem;
-        margin-top: 20px;
-        animation: fade-in-up 2.5s ease-out forwards;
-    }
-
-    .register-link a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-        transition: text-decoration 0.3s ease;
-    }
-
-    .register-link a:hover {
-        text-decoration: underline;
-    }
-
-</style>
 <body>
-    <div class="wrapper">
-        <h1>Login</h1>
-        <img src="imgfolder/logo_versao_black.png" width="100px"  alt="">
-        <div class="input-box">
-            <input type="" placeholder="RA" id = "RA" required>
-            <i class="bi bi-person-fill"></i>
-        </div>
-
-        <div class="input-box">
-            <input type="password" placeholder="Senha" id = "password" required>
-            <i class="bi bi-lock-fill"></i>
-        </div>
-
-        <div class="remember-forgot">
-            <a href="#">Esqueceu a Senha?</a>
-        </div>
-
-        <button type="submit" class="btn" id = "submit">Login</button>
-
-        <div class="register-link">
-            <p>Não possui uma conta? <a href="cadastro.html"><h3>Cadastro</h3></a></p>
-        </div>
+  <div class="wrapper">
+    <h1>Login</h1>
+    <img src="imgfolder/logo_versao_black.png" width="100px" alt="" />
+    <div class="input-box">
+      <input type="" placeholder="RA" id="RA" required />
+      <i class="bi bi-person-fill"></i>
     </div>
 
-    <script src = "auth_script.js"></script>
+    <div class="input-box">
+      <input type="password" placeholder="Senha" id="password" required />
+      <i class="bi bi-lock-fill"></i>
+    </div>
+
+    <div class="remember-forgot">
+      <a href="#">Esqueceu a Senha?</a>
+    </div>
+
+    <button type="submit" class="btn" id="submit">Login</button>
+
+    <div class="register-link">
+      <p>
+        Não possui uma conta? <a href="cadastro.html">
+          <h3>Cadastro</h3>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <script src="auth_script.js"></script>
 </body>
+
 </html>
