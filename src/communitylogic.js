@@ -118,6 +118,9 @@ function renderCommunityList(communitySection, commlist) {
     according to the HTML
   */
 
+  // Set default community name after receiving at least one
+ document.getElementById("communityname").textContent = commlist[0]["community_name"];
+ 
   // Also implements functionality
 
   communitySection.innerHTML = "";
